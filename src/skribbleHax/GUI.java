@@ -108,6 +108,7 @@ public class GUI {
 		rightPanel.add(scrollPane, gbc_scrollPane);
 		
 		JTextPane txtOutput = new JTextPane();
+		txtOutput.setEditable(false);
 		scrollPane.setViewportView(txtOutput);
 		
 		JPanel centerPanel = new JPanel();

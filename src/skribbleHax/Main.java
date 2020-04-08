@@ -28,7 +28,6 @@ public class Main {
 				words.put(word.length(), list);
 			}
 			lstSc.close();
-			System.out.println(words);
 		}
 		catch(Exception e) {
 			e.printStackTrace();
@@ -38,8 +37,11 @@ public class Main {
 	
 	public static ArrayList<String> findAnswer(String input){
 		setup();
-		ArrayList<String> answer = new ArrayList<String>();
+		
 		ArrayList<String> wordsOfLength = words.get(input.length());
+		if(wordsOfLength == null) return new ArrayList<String>();
+		
+		ArrayList<String> answer = new ArrayList<String>();
 		for(int i = 0; i < wordsOfLength.size(); i++) {
 			if(input.length() == wordsOfLength.get(i).length()) {
 				String str = wordsOfLength.get(i);
