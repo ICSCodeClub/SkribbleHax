@@ -16,16 +16,17 @@ import com.sun.jna.win32.W32APIOptions;
 
 public class JNAUtils {
 	public static void main(String[] args) throws InterruptedException {
-		final String tosend = "calculator";
+		final String tosend = "notepad";
 		
 		HWND window = getFromName(tosend).getHWND();
 		
-		sendWindow(window, 'z');
-		sendWindow(window, 'a');
-		sendWindow(window, 'p');
+		sendWindow(window, "zap!");
 	}
 	public static User32 USER = (User32) Native.loadLibrary("user32", User32.class, W32APIOptions.DEFAULT_OPTIONS);
 	
+	public static void sendWindow(HWND window, String str) {
+		for(char c : str.toCharArray()) sendWindow(window, c);
+	}
 	public static void sendWindow(HWND window, char c) {
 		for(HWND w : getAllChildren(window)) {
 			sendWindowDirect(w, c);

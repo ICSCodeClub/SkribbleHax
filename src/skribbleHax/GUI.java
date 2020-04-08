@@ -27,7 +27,8 @@ public class GUI {
 	private JFrame frame;
 	private JTextField txtBrowserName;
 	private JTextField txtInput;
-
+	private JTextPane txtOutput;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -107,7 +108,7 @@ public class GUI {
 		gbc_scrollPane.gridy = 4;
 		rightPanel.add(scrollPane, gbc_scrollPane);
 		
-		JTextPane txtOutput = new JTextPane();
+		txtOutput = new JTextPane();
 		txtOutput.setEditable(false);
 		scrollPane.setViewportView(txtOutput);
 		
@@ -126,13 +127,8 @@ public class GUI {
 		btnRunAlgorith.addActionListener(new ActionListener() {
 			@Override 
 			public void actionPerformed(ActionEvent e) {
-	            List<String> answers = Main.findAnswer(txtInput.getText());
-	            //System.out.println(answers);
-	            txtOutput.setText("");
-	            for(String ans : answers)
-	            	if(txtOutput.getText().isBlank()) txtOutput.setText(ans);
-	            	else txtOutput.setText(txtOutput.getText()+"\n"+ans);
-	         }
+				getAnswer();
+	        }
 	    });
 		
 		GroupLayout gl_centerPanel = new GroupLayout(centerPanel);
@@ -167,5 +163,21 @@ public class GUI {
 					.addContainerGap(57, Short.MAX_VALUE))
 		);
 		centerPanel.setLayout(gl_centerPanel);
+	}
+	private void getAnswer() {
+		txtOutput.setText("Finding...");
+		
+		//run in new thread (b/c slow)
+        (new Thread() {
+            public void run() {
+            	String allAnswers = "";
+            	List<String> answers = Main.findAnswer(txtInput.getText());
+            	for(String ans : answers)
+                	if(allAnswers.isBlank()) allAnswers = ans;
+                	else allAnswers = allAnswers+"\n"+ans;
+            	txtOutput.setText(allAnswers);
+            }
+          }).start();
+        
 	}
 }
