@@ -132,9 +132,7 @@ public class GUI {
 			@Override
 			public void keyTyped(KeyEvent e) {
 				// TODO Auto-generated method stub
-				if (e.getKeyCode()== 'f'){
-					System.out.println("Doing stuff");
-				}
+				
 			}
 
 			@Override
