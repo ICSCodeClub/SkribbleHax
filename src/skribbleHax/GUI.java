@@ -64,7 +64,7 @@ public class GUI {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 366, 251);
+		frame.setBounds(100, 100, 380, 360);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setAlwaysOnTop(true);
 		
@@ -146,26 +146,16 @@ public class GUI {
 		
 		
 		txtInput.addKeyListener(new KeyListener() {
-
 			@Override
 			public void keyTyped(KeyEvent e) {
 				// TODO Auto-generated method stub
 				
 			}
-
 			@Override
 			public void keyPressed(KeyEvent e) {
-			    if (e.getKeyCode()==KeyEvent.VK_ENTER){
-			    	List<String> answers = Main.findAnswer(txtInput.getText());
-		            //System.out.println(answers);
-		            txtOutput.setText("");
-		            for(String ans : answers)
-		            	if(txtOutput.getText().isBlank()) txtOutput.setText(ans);
-		            	else txtOutput.setText(txtOutput.getText()+"\n"+ans);
-			    }
-
+			    if (e.getKeyCode()==KeyEvent.VK_ENTER)
+			    	getAnswer();
 			}
-
 			@Override
 			public void keyReleased(KeyEvent e) {
 				// TODO Auto-generated method stub
@@ -178,12 +168,7 @@ public class GUI {
 		btnRunAlgorith.addActionListener(new ActionListener() {
 			@Override 
 			public void actionPerformed(ActionEvent e) {
-	            List<String> answers = Main.findAnswer(txtInput.getText());
-	            //System.out.println(answers);
-	            txtOutput.setText("");
-	            for(String ans : answers)
-	            	if(txtOutput.getText().isBlank()) txtOutput.setText(ans);
-	            	else txtOutput.setText(txtOutput.getText()+"\n"+ans);
+	            getAnswer();
 	         }
 	    });
 		
