@@ -1,3 +1,4 @@
+package skribbleHax;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -31,6 +32,7 @@ public class GUI {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		Main.setup();
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
