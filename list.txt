@@ -214,7 +214,6 @@ cedar
 cells
 cents
 chain
-
 crown
 crude
 crust
@@ -430,7 +429,6 @@ gauge
 genes
 genie
 genre
-
 ghana
 ghost
 giant
@@ -647,7 +645,6 @@ loads
 loans
 lobby
 local
-
 month
 moore
 moral
@@ -894,6 +891,7 @@ Spinach
 Trailer
 Unibrow
 Wrinkle
+
 Backpack
 Barbecue
 Basement
@@ -918,6 +916,7 @@ Tortoise
 Trapdoor
 Treasure
 Whatsapp
+
 Blueberry
 Bookshelf
 Breakfast
@@ -945,6 +944,7 @@ Telephone
 Telescope
 Tombstone
 Waterfall
+
 Antarctica
 Bellpepper
 Broomstick
@@ -961,14 +961,18 @@ Sunglasses
 Tablecloth
 Toothbrush
 Toothpaste
+
 Cheerleader
 Electricity
 Firefighter
 Marshmellow
 Observatory
 Underground
+
 Cheeseburger
 Relationship
 Sledgehammer
 Swimmingpool
+
 Archaeologist
+
