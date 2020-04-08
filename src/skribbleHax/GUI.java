@@ -1,5 +1,3 @@
-package skribbleHax;
-
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -8,6 +6,8 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.List;
 
 import javax.swing.GroupLayout;
@@ -31,8 +31,7 @@ public class GUI {
 	private JFrame frame;
 	private JTextField txtBrowserName;
 	private JTextField txtInput;
-	private JTextPane txtOutput;
-	
+
 	/**
 	 * Launch the application.
 	 */
@@ -125,7 +124,7 @@ public class GUI {
 		gbc_scrollPane.gridy = 5;
 		rightPanel.add(scrollPane, gbc_scrollPane);
 		
-		txtOutput = new JTextPane();
+		JTextPane txtOutput = new JTextPane();
 		txtOutput.setEditable(false);
 		scrollPane.setViewportView(txtOutput);
 		
@@ -141,11 +140,48 @@ public class GUI {
 		JLabel lblHelp = new JLabel("For unknown letters, enter _");
 		
 		JButton btnRunAlgorith = new JButton("Find Answers");
+		
+		
+		txtInput.addKeyListener(new KeyListener() {
+
+			@Override
+			public void keyTyped(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+			    if (e.getKeyCode()==KeyEvent.VK_ENTER){
+			    	List<String> answers = Main.findAnswer(txtInput.getText());
+		            //System.out.println(answers);
+		            txtOutput.setText("");
+		            for(String ans : answers)
+		            	if(txtOutput.getText().isBlank()) txtOutput.setText(ans);
+		            	else txtOutput.setText(txtOutput.getText()+"\n"+ans);
+			    }
+
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
+		
+		
 		btnRunAlgorith.addActionListener(new ActionListener() {
 			@Override 
 			public void actionPerformed(ActionEvent e) {
-				getAnswer();
-	        }
+	            List<String> answers = Main.findAnswer(txtInput.getText());
+	            //System.out.println(answers);
+	            txtOutput.setText("");
+	            for(String ans : answers)
+	            	if(txtOutput.getText().isBlank()) txtOutput.setText(ans);
+	            	else txtOutput.setText(txtOutput.getText()+"\n"+ans);
+	         }
 	    });
 		
 		GroupLayout gl_centerPanel = new GroupLayout(centerPanel);
