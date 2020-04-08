@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
+	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-13">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="jna/jna-4.5.2-javadoc.jar"/>
+	<classpathentry kind="lib" path="jna/jna-4.5.2-sources.jar"/>
+	<classpathentry kind="lib" path="jna/jna-4.5.2.jar"/>
+	<classpathentry kind="lib" path="jna/jna-platform-4.5.2-javadoc.jar"/>
+	<classpathentry kind="lib" path="jna/jna-platform-4.5.2-sources.jar"/>
+	<classpathentry kind="lib" path="jna/jna-platform-4.5.2.jar"/>
+	<classpathentry kind="lib" path="jna/junit-4.10-javadoc.jar"/>
+	<classpathentry kind="lib" path="jna/junit-4.10-sources.jar"/>
+	<classpathentry kind="lib" path="jna/junit-4.10.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

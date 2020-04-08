@@ -34,6 +34,7 @@ public class GUI {
 	private JTextField txtBrowserName;
 	private JTextField txtInput;
 	private JTextPane txtOutput;
+	private JCheckBox chckbxAutoEnter;
 	
 	/**
 	 * Launch the application.
@@ -98,12 +99,12 @@ public class GUI {
 		gbc_lblBrowserName.gridy = 1;
 		rightPanel.add(lblBrowserName, gbc_lblBrowserName);
 		
-		JCheckBox chckbxNewCheckBox = new JCheckBox("Enable auto-enter");
+		chckbxAutoEnter = new JCheckBox("Enable auto-enter");
 		GridBagConstraints gbc_chckbxNewCheckBox = new GridBagConstraints();
 		gbc_chckbxNewCheckBox.insets = new Insets(0, 0, 5, 0);
 		gbc_chckbxNewCheckBox.gridx = 0;
 		gbc_chckbxNewCheckBox.gridy = 2;
-		rightPanel.add(chckbxNewCheckBox, gbc_chckbxNewCheckBox);
+		rightPanel.add(chckbxAutoEnter, gbc_chckbxNewCheckBox);
 		
 		Component rigidArea = Box.createRigidArea(new Dimension(20, 20));
 		GridBagConstraints gbc_rigidArea = new GridBagConstraints();
@@ -217,7 +218,11 @@ public class GUI {
                 	if(allAnswers.isBlank()) allAnswers = ans;
                 	else allAnswers = allAnswers+"\n"+ans;
             	txtOutput.setText(allAnswers);
+            	if(chckbxAutoEnter.isSelected()) autoEnterAnswers();
             }
           }).start();
+	}
+	private void autoEnterAnswers() {
+		
 	}
 }
