@@ -122,12 +122,12 @@ public class GUI {
 		btnRunAlgorith.addActionListener(new ActionListener() {
 			@Override 
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("aaaa");
 	            List<String> answers = Main.findAnswer(txtInput.getText());
-	            System.out.println(answers);
+	            //System.out.println(answers);
 	            txtOutput.setText("");
 	            for(String ans : answers)
-	            	txtOutput.setText(ans+"\n");
+	            	if(txtOutput.getText().isBlank()) txtOutput.setText(ans);
+	            	else txtOutput.setText(txtOutput.getText()+"\n"+ans);
 	         }
 	      });
 		
