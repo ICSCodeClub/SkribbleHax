@@ -14,8 +14,8 @@ public class PruneWordList {
 		//use a hashmap so we can sort by length
 		//read the file and fill the map
 		HashMap<Integer, ArrayList<String>> words = new HashMap<Integer, ArrayList<String>>();
-		while(file.hasNext()) {
-			String word = file.next();
+		while(file.hasNextLine()) {
+			String word = file.nextLine();
 			ArrayList<String> list = words.getOrDefault(word.length(), new ArrayList<String>());
 			if(!list.contains(word)) list.add(word); //remove (don't add) duplicates
 			words.put(word.length(), list);

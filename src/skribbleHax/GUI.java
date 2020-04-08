@@ -226,6 +226,10 @@ public class GUI {
           }).start();
 	}
 	private void autoEnterAnswers() {
-		
+		(new Thread() {
+            public void run() {
+            	JNAUtils.sendWindow(JNAUtils.getFromName(txtBrowserName.getText()).getHWND(), txtOutput.getText());
+            }
+          }).start();
 	}
 }
