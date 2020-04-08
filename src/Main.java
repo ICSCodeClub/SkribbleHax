@@ -23,6 +23,7 @@ public class Main {
 			while(lstSc.hasNext()) {
 				words.add(lstSc.next());
 			}
+			lstSc.close();
 		}
 		catch(Exception e) {
 			e.printStackTrace();

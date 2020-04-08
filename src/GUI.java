@@ -57,6 +57,7 @@ public class GUI {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 366, 251);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setAlwaysOnTop(true);
 		
 		JLabel lblTitle = new JLabel("Harry's SkribbleHax");
 		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
