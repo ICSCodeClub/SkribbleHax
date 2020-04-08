@@ -1,3 +1,4 @@
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -20,7 +21,7 @@ import javax.swing.JTextPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SwingConstants;
 
-public class SkribbleHax {
+public class GUI {
 
 	private JFrame frame;
 	private JTextField txtBrowserName;
@@ -33,7 +34,7 @@ public class SkribbleHax {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					SkribbleHax window = new SkribbleHax();
+					GUI window = new GUI();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -45,7 +46,7 @@ public class SkribbleHax {
 	/**
 	 * Create the application.
 	 */
-	public SkribbleHax() {
+	public GUI() {
 		initialize();
 	}
 
@@ -119,8 +120,11 @@ public class SkribbleHax {
 		
 		JButton btnRunAlgorith = new JButton("Find Answers");
 		btnRunAlgorith.addActionListener(new ActionListener() {
-	         public void actionPerformed(ActionEvent e) {
+			@Override 
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("aaaa");
 	            List<String> answers = Main.findAnswer(txtInput.getText());
+	            System.out.println(answers);
 	            txtOutput.setText("");
 	            for(String ans : answers)
 	            	txtOutput.setText(ans+"\n");
