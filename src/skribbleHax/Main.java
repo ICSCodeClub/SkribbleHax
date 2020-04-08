@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public class Main {
+	public static final boolean useUSDict = false;
+	
 	public static void main(String[] args) throws FileNotFoundException{
 		setup();
 		
@@ -18,21 +20,10 @@ public class Main {
 	
 	private static HashMap<Integer, ArrayList<String>> words;
 	public static void setup() {
-		if(words == null) try {
-			words = new HashMap<Integer, ArrayList<String>>();
-			Scanner lstSc = new Scanner(new File("list.txt"));
-			while(lstSc.hasNext()) {
-				String word = lstSc.next();
-				ArrayList<String> list = words.getOrDefault(word.length(), new ArrayList<String>());
-				list.add(word);
-				words.put(word.length(), list);
-			}
-			lstSc.close();
-		}
-		catch(Exception e) {
-			e.printStackTrace();
-			words = null;
-		}
+		if(words != null) return;
+		
+		if(useUSDict) setupWithUSDict();
+		else setupWithLocalList();
 	}
 	
 	public static ArrayList<String> findAnswer(String input){
@@ -66,5 +57,33 @@ public class Main {
 			System.out.println(list.get(i));
 		}
 	}
-
+	
+	private static void setupWithLocalList() {
+		if(words == null) try {
+			words = new HashMap<Integer, ArrayList<String>>();
+			Scanner lstSc = new Scanner(new File("list.txt"));
+			while(lstSc.hasNext()) {
+				String word = lstSc.next();
+				ArrayList<String> list = words.getOrDefault(word.length(), new ArrayList<String>());
+				list.add(word);
+				if(!words.containsKey(word.length())) words.put(word.length(), list);
+			}
+			lstSc.close();
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			words = null;
+		}
+	}
+	private static void setupWithUSDict() {
+		ArrayList<String> dict = USDictionary.loadDictionary();
+		if(dict == null) return;
+		
+		words = new HashMap<Integer, ArrayList<String>>();
+		for(String word : dict) {
+			ArrayList<String> list = words.getOrDefault(word.length(), new ArrayList<String>());
+			list.add(word);
+			if(!words.containsKey(word.length())) words.put(word.length(), list);
+		}
+	}
 }
