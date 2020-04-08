@@ -6,23 +6,31 @@ import java.util.Scanner;
 public class Main {
 
 	public static void main(String[] args) throws FileNotFoundException{
-		File f = new File("list.txt");
-		Scanner lstSc = new Scanner(f);
-		
-		ArrayList<String> words = new ArrayList<String>();
-		
-		while(lstSc.hasNext()) {
-			words.add(lstSc.next());
-		}
+		setup();
 		
 		String userInput = "___s_t__p";
 		
-		ArrayList<String> answer = findAnswer(userInput, words);
+		ArrayList<String> answer = findAnswer(userInput);
 		
 		printArrayList(answer);
 	}
 	
-	public static ArrayList<String> findAnswer(String input, ArrayList<String> words){
+	private static ArrayList<String> words;
+	private static void setup() {
+		if(words == null) try {
+			words = new ArrayList<String>();
+			Scanner lstSc = new Scanner(new File("list.txt"));
+			while(lstSc.hasNext()) {
+				words.add(lstSc.next());
+			}
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static ArrayList<String> findAnswer(String input){
+		setup();
 		ArrayList<String> answer = new ArrayList<String>();
 		for(int i = 0; i < words.size(); i++) {
 			if(input.length() == words.get(i).length()) {
@@ -40,9 +48,7 @@ public class Main {
 			}
 		}
 		
-		return answer;
-		
-		
+		return answer;	
 	}
 	
 	public static void printArrayList(ArrayList<String> list) {
