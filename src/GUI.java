@@ -130,7 +130,7 @@ public class GUI {
 	            	if(txtOutput.getText().isBlank()) txtOutput.setText(ans);
 	            	else txtOutput.setText(txtOutput.getText()+"\n"+ans);
 	         }
-	      });
+	    });
 		
 		GroupLayout gl_centerPanel = new GroupLayout(centerPanel);
 		gl_centerPanel.setHorizontalGroup(
