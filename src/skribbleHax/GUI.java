@@ -33,7 +33,8 @@ public class GUI {
 	private JFrame frame;
 	private JTextField txtBrowserName;
 	private JTextField txtInput;
-
+	private JTextPane txtOutput;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -126,7 +127,7 @@ public class GUI {
 		gbc_scrollPane.gridy = 5;
 		rightPanel.add(scrollPane, gbc_scrollPane);
 		
-		JTextPane txtOutput = new JTextPane();
+		txtOutput = new JTextPane();
 		txtOutput.setEditable(false);
 		scrollPane.setViewportView(txtOutput);
 		
