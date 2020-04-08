@@ -23,6 +23,9 @@ import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SwingConstants;
+
+import skribbleHax.libraries.JNAUtils;
+
 import java.awt.Component;
 import javax.swing.Box;
 import java.awt.Dimension;
@@ -34,7 +37,6 @@ public class GUI {
 	private JTextField txtBrowserName;
 	private JTextField txtInput;
 	private JTextPane txtOutput;
-	private JCheckBox chckbxAutoEnter;
 	
 	/**
 	 * Launch the application.
@@ -99,13 +101,6 @@ public class GUI {
 		gbc_lblBrowserName.gridy = 1;
 		rightPanel.add(lblBrowserName, gbc_lblBrowserName);
 		
-		chckbxAutoEnter = new JCheckBox("Enable auto-enter");
-		GridBagConstraints gbc_chckbxNewCheckBox = new GridBagConstraints();
-		gbc_chckbxNewCheckBox.insets = new Insets(0, 0, 5, 0);
-		gbc_chckbxNewCheckBox.gridx = 0;
-		gbc_chckbxNewCheckBox.gridy = 2;
-		rightPanel.add(chckbxAutoEnter, gbc_chckbxNewCheckBox);
-		
 		Component rigidArea = Box.createRigidArea(new Dimension(20, 20));
 		GridBagConstraints gbc_rigidArea = new GridBagConstraints();
 		gbc_rigidArea.insets = new Insets(0, 0, 5, 0);
@@ -142,27 +137,21 @@ public class GUI {
 		txtInput.setColumns(10);
 		
 		JLabel lblHelp = new JLabel("For unknown letters, enter _");
-		
+		JButton btnEnterAnswers = new JButton("Enter Answers");
 		JButton btnRunAlgorith = new JButton("Find Answers");
 		
-		
+		//----------------------------------Listeners----------------------------------\\
 		txtInput.addKeyListener(new KeyListener() {
 			@Override
-			public void keyTyped(KeyEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
+			public void keyTyped(KeyEvent e) {}
+			
 			@Override
 			public void keyPressed(KeyEvent e) {
 			    if (e.getKeyCode()==KeyEvent.VK_ENTER)
 			    	getAnswer();
 			}
 			@Override
-			public void keyReleased(KeyEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
+			public void keyReleased(KeyEvent e) {}
 		});
 		
 		
@@ -173,22 +162,35 @@ public class GUI {
 	         }
 	    });
 		
+		btnEnterAnswers.addActionListener(new ActionListener() {
+			@Override 
+			public void actionPerformed(ActionEvent e) {
+	            if(JNAUtils.getFromName(txtBrowserName.getText()) != null)
+	            	autoEnterAnswers();
+	         }
+	    });
+		
+		
+		
+		//----------------------------------Layout----------------------------------\\
 		GroupLayout gl_centerPanel = new GroupLayout(centerPanel);
 		gl_centerPanel.setHorizontalGroup(
-			gl_centerPanel.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, gl_centerPanel.createSequentialGroup()
-					.addContainerGap(41, Short.MAX_VALUE)
+			gl_centerPanel.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_centerPanel.createSequentialGroup()
+					.addContainerGap(55, Short.MAX_VALUE)
 					.addGroup(gl_centerPanel.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_centerPanel.createSequentialGroup()
 							.addComponent(txtInput, GroupLayout.PREFERRED_SIZE, 83, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addComponent(lblInput, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_centerPanel.createSequentialGroup()
-							.addGap(54)
-							.addComponent(btnRunAlgorith))
-						.addGroup(gl_centerPanel.createSequentialGroup()
 							.addGap(53)
-							.addComponent(lblHelp)))
+							.addComponent(lblHelp))
+						.addGroup(gl_centerPanel.createSequentialGroup()
+							.addGap(54)
+							.addGroup(gl_centerPanel.createParallelGroup(Alignment.TRAILING, false)
+								.addComponent(btnRunAlgorith, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(btnEnterAnswers, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
 					.addGap(32))
 		);
 		gl_centerPanel.setVerticalGroup(
@@ -202,7 +204,9 @@ public class GUI {
 						.addComponent(lblInput))
 					.addGap(18)
 					.addComponent(btnRunAlgorith)
-					.addContainerGap(57, Short.MAX_VALUE))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(btnEnterAnswers)
+					.addContainerGap(139, Short.MAX_VALUE))
 		);
 		centerPanel.setLayout(gl_centerPanel);
 	}
@@ -217,8 +221,7 @@ public class GUI {
             	for(String ans : answers)
                 	if(allAnswers.isBlank()) allAnswers = ans;
                 	else allAnswers = allAnswers+"\n"+ans;
-            	txtOutput.setText(allAnswers);
-            	if(chckbxAutoEnter.isSelected()) autoEnterAnswers();
+            	txtOutput.setText(allAnswers.isBlank() ? "No answers found" : allAnswers);
             }
           }).start();
 	}
