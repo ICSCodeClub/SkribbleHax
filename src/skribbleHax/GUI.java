@@ -127,17 +127,18 @@ public class GUI {
 		JButton btnRunAlgorith = new JButton("Find Answers");
 		
 		
-		btnRunAlgorith.addKeyListener(new KeyListener() {
+		txtInput.addKeyListener(new KeyListener() {
 
 			@Override
 			public void keyTyped(KeyEvent e) {
 				// TODO Auto-generated method stub
-				
+				if (e.getKeyCode()== 'f'){
+					System.out.println("Doing stuff");
+				}
 			}
 
 			@Override
 			public void keyPressed(KeyEvent e) {
-				System.out.println("Doing stuff");
 			    if (e.getKeyCode()==KeyEvent.VK_ENTER){
 			    	List<String> answers = Main.findAnswer(txtInput.getText());
 		            //System.out.println(answers);
@@ -156,6 +157,8 @@ public class GUI {
 			}
 			
 		});
+		
+		
 		btnRunAlgorith.addActionListener(new ActionListener() {
 			@Override 
 			public void actionPerformed(ActionEvent e) {
