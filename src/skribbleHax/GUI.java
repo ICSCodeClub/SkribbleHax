@@ -21,6 +21,10 @@ import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SwingConstants;
+import java.awt.Component;
+import javax.swing.Box;
+import java.awt.Dimension;
+import javax.swing.JCheckBox;
 
 public class GUI {
 
@@ -71,15 +75,15 @@ public class GUI {
 		frame.getContentPane().add(rightPanel, BorderLayout.WEST);
 		GridBagLayout gbl_rightPanel = new GridBagLayout();
 		gbl_rightPanel.columnWidths = new int[]{96, 0};
-		gbl_rightPanel.rowHeights = new int[]{19, 0, 0, 0, 0, 0, 0, 0};
+		gbl_rightPanel.rowHeights = new int[]{19, 0, 0, 0, 0, 0, 0, 0, 0};
 		gbl_rightPanel.columnWeights = new double[]{1.0, Double.MIN_VALUE};
-		gbl_rightPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 1.0, Double.MIN_VALUE};
+		gbl_rightPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 1.0, Double.MIN_VALUE};
 		rightPanel.setLayout(gbl_rightPanel);
 		
 		txtBrowserName = new JTextField();
+		txtBrowserName.setHorizontalAlignment(SwingConstants.LEFT);
 		GridBagConstraints gbc_txtBrowserName = new GridBagConstraints();
 		gbc_txtBrowserName.insets = new Insets(0, 0, 5, 0);
-		gbc_txtBrowserName.anchor = GridBagConstraints.NORTHWEST;
 		gbc_txtBrowserName.gridx = 0;
 		gbc_txtBrowserName.gridy = 0;
 		rightPanel.add(txtBrowserName, gbc_txtBrowserName);
@@ -92,20 +96,33 @@ public class GUI {
 		gbc_lblBrowserName.gridy = 1;
 		rightPanel.add(lblBrowserName, gbc_lblBrowserName);
 		
+		JCheckBox chckbxNewCheckBox = new JCheckBox("Enable auto-enter");
+		GridBagConstraints gbc_chckbxNewCheckBox = new GridBagConstraints();
+		gbc_chckbxNewCheckBox.insets = new Insets(0, 0, 5, 0);
+		gbc_chckbxNewCheckBox.gridx = 0;
+		gbc_chckbxNewCheckBox.gridy = 2;
+		rightPanel.add(chckbxNewCheckBox, gbc_chckbxNewCheckBox);
+		
+		Component rigidArea = Box.createRigidArea(new Dimension(20, 20));
+		GridBagConstraints gbc_rigidArea = new GridBagConstraints();
+		gbc_rigidArea.insets = new Insets(0, 0, 5, 0);
+		gbc_rigidArea.gridx = 0;
+		gbc_rigidArea.gridy = 3;
+		rightPanel.add(rigidArea, gbc_rigidArea);
+		
 		JLabel lblOutput = new JLabel("Possibilities:");
 		GridBagConstraints gbc_lblOutput = new GridBagConstraints();
 		gbc_lblOutput.insets = new Insets(0, 0, 5, 0);
 		gbc_lblOutput.gridx = 0;
-		gbc_lblOutput.gridy = 3;
+		gbc_lblOutput.gridy = 4;
 		rightPanel.add(lblOutput, gbc_lblOutput);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
 		gbc_scrollPane.gridheight = 3;
-		gbc_scrollPane.insets = new Insets(0, 0, 5, 0);
 		gbc_scrollPane.fill = GridBagConstraints.BOTH;
 		gbc_scrollPane.gridx = 0;
-		gbc_scrollPane.gridy = 4;
+		gbc_scrollPane.gridy = 5;
 		rightPanel.add(scrollPane, gbc_scrollPane);
 		
 		txtOutput = new JTextPane();
@@ -178,6 +195,5 @@ public class GUI {
             	txtOutput.setText(allAnswers);
             }
           }).start();
-        
 	}
 }
