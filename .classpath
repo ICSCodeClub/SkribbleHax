@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
+	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-13">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="C:/Users/leonl/.p2/pool/plugins/org.eclipse.osgi_3.15.100.v20191114-1701.jar" sourcepath="C:/Users/leonl/.p2/pool/plugins/org.eclipse.osgi_3.15.100.v20191114-1701.jar"/>
 	<classpathentry kind="lib" path="C:/Users/leonl/.p2/pool/plugins/org.eclipse.core.commands_3.9.600.v20191122-2109.jar" sourcepath="C:/Users/leonl/.p2/pool/plugins/org.eclipse.core.commands_3.9.600.v20191122-2109.jar"/>
 	<classpathentry kind="lib" path="C:/Users/leonl/.p2/pool/plugins/org.eclipse.equinox.common_3.10.600.v20191004-1420.jar" sourcepath="C:/Users/leonl/.p2/pool/plugins/org.eclipse.equinox.common_3.10.600.v20191004-1420.jar"/>
@@ -18,5 +18,14 @@
 	<classpathentry kind="lib" path="C:/Users/leonl/.p2/pool/plugins/org.eclipse.ui.workbench_3.117.0.v20191126-1131.jar" sourcepath="C:/Users/leonl/.p2/pool/plugins/org.eclipse.ui.workbench_3.117.0.v20191126-1131.jar"/>
 	<classpathentry kind="lib" path="C:/Users/leonl/.p2/pool/plugins/com.ibm.icu_64.2.0.v20190507-1337.jar" sourcepath="C:/Users/leonl/.p2/pool/plugins/com.ibm.icu_64.2.0.v20190507-1337.jar"/>
 	<classpathentry kind="lib" path="C:/Users/leonl/.p2/pool/plugins/org.eclipse.ui.forms_3.8.200.v20191114-0830.jar" sourcepath="C:/Users/leonl/.p2/pool/plugins/org.eclipse.ui.forms_3.8.200.v20191114-0830.jar"/>
+	<classpathentry kind="lib" path="jna/jna-4.5.2-javadoc.jar"/>
+	<classpathentry kind="lib" path="jna/jna-4.5.2-sources.jar"/>
+	<classpathentry kind="lib" path="jna/jna-4.5.2.jar"/>
+	<classpathentry kind="lib" path="jna/jna-platform-4.5.2-javadoc.jar"/>
+	<classpathentry kind="lib" path="jna/jna-platform-4.5.2-sources.jar"/>
+	<classpathentry kind="lib" path="jna/jna-platform-4.5.2.jar"/>
+	<classpathentry kind="lib" path="jna/junit-4.10-javadoc.jar"/>
+	<classpathentry kind="lib" path="jna/junit-4.10-sources.jar"/>
+	<classpathentry kind="lib" path="jna/junit-4.10.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
