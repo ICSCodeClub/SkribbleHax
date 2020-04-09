@@ -217,7 +217,7 @@ public class GUI {
         (new Thread() {
             public void run() {
             	String allAnswers = "";
-            	List<String> answers = Main.findAnswer(txtInput.getText());
+            	List<String> answers = Main.findAnswerMultiwordTest(txtInput.getText());
             	for(String ans : answers)
                 	if(allAnswers.isBlank()) allAnswers = ans;
                 	else allAnswers = allAnswers+"\n"+ans;
@@ -225,10 +225,18 @@ public class GUI {
             }
           }).start();
 	}
+	//seems to work in firefox, not ms edge
+	//have not tried chrome yet
 	private void autoEnterAnswers() {
 		(new Thread() {
             public void run() {
-            	JNAUtils.sendWindow(JNAUtils.getFromName(txtBrowserName.getText()).getHWND(), txtOutput.getText());
+            	final String name = txtBrowserName.getText();
+            	System.out.println("Printing to "+JNAUtils.getFromName(name).getTitle());
+            	for(String word : txtOutput.getText().split("\n")) {
+            		if(JNAUtils.getFromName(name) == null) return;
+            		JNAUtils.sendWindow(JNAUtils.getFromName(name).getHWND(), word+"\n");
+            		try {Thread.sleep(100+(long) (200*Math.random())); } catch (Exception e) {}
+            	}
             }
           }).start();
 	}
