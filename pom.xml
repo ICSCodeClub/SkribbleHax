@@ -53,7 +53,7 @@
             </descriptorRefs>
             <archive>
               <manifest>
-                <mainClass>main.Main</mainClass>
+                <mainClass>skribbleHax.GUI</mainClass>
               </manifest>
             </archive>
           </configuration>
