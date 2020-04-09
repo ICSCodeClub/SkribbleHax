@@ -148,17 +148,18 @@ public class GUI {
 			    if (e.getKeyCode()==KeyEvent.VK_ENTER)
 			    	getAnswer();
 			}
+			
 			public void keyReleased(KeyEvent e) {}
 		});
 		
 		
-		btnRunAlgorith.addActionListener(new ActionListener() {
+		btnRunAlgorith.addActionListener(new ActionListener() { 
 			public void actionPerformed(ActionEvent e) {
 	            getAnswer();
 	         }
 	    });
 		
-		btnEnterAnswers.addActionListener(new ActionListener() {
+		btnEnterAnswers.addActionListener(new ActionListener() { 
 			public void actionPerformed(ActionEvent e) {
 	            if(JNAUtils.getFromName(txtBrowserName.getText()) != null)
 	            	autoEnterAnswers();
