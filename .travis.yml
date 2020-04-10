@@ -1,1 +1,6 @@
 language: java
+before_script:
+ - sudo apt install openjdk-8-jdk openjdk-8-jre -y
+ script:
+ - cd src/main/java/skribbleHax/
+ - javac Main.java
