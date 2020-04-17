@@ -19,8 +19,10 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SwingConstants;
 
@@ -94,7 +96,7 @@ public class GUI {
 		rightPanel.add(txtBrowserName, gbc_txtBrowserName);
 		txtBrowserName.setColumns(10);
 		
-		JLabel lblBrowserName = new JLabel("Name of Browser");
+		JLabel lblBrowserName = new JLabel("Name of Window");
 		GridBagConstraints gbc_lblBrowserName = new GridBagConstraints();
 		gbc_lblBrowserName.insets = new Insets(0, 0, 5, 0);
 		gbc_lblBrowserName.gridx = 0;
@@ -131,6 +133,7 @@ public class GUI {
 		frame.getContentPane().add(centerPanel, BorderLayout.CENTER);
 		
 		JLabel lblInput = new JLabel("Known Word");
+		lblInput.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		
 		txtInput = new JTextField();
 		txtInput.setFont(new Font("Consolas", Font.PLAIN, 12));
@@ -139,6 +142,11 @@ public class GUI {
 		JLabel lblHelp = new JLabel("For unknown letters, enter _");
 		JButton btnEnterAnswers = new JButton("Enter Answers");
 		JButton btnRunAlgorith = new JButton("Find Answers");
+		
+		JSpinner spnUnderscores = new JSpinner();
+		spnUnderscores.setModel(new SpinnerNumberModel(new Integer(1), null, null, new Integer(1)));
+		
+		JButton btnAddUnderscores = new JButton("Set Underscores");
 		
 		//----------------------------------Listeners----------------------------------\\
 		txtInput.addKeyListener(new KeyListener() {
@@ -166,7 +174,14 @@ public class GUI {
 	         }
 	    });
 		
-		
+		btnAddUnderscores.addActionListener(new ActionListener() { 
+			public void actionPerformed(ActionEvent e) {
+				String underscores = "";
+				for(int i = 0; i < Integer.parseInt(spnUnderscores.getValue().toString()); i++)
+					underscores += "_";
+	            txtInput.setText(underscores);
+	         }
+	    });
 		
 		//----------------------------------Layout----------------------------------\\
 		GroupLayout gl_centerPanel = new GroupLayout(centerPanel);
@@ -174,19 +189,22 @@ public class GUI {
 			gl_centerPanel.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_centerPanel.createSequentialGroup()
 					.addContainerGap(55, Short.MAX_VALUE)
-					.addGroup(gl_centerPanel.createParallelGroup(Alignment.LEADING)
+					.addGroup(gl_centerPanel.createParallelGroup(Alignment.TRAILING)
+						.addComponent(lblHelp)
 						.addGroup(gl_centerPanel.createSequentialGroup()
-							.addComponent(txtInput, GroupLayout.PREFERRED_SIZE, 83, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(lblInput, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_centerPanel.createSequentialGroup()
-							.addGap(53)
-							.addComponent(lblHelp))
-						.addGroup(gl_centerPanel.createSequentialGroup()
-							.addGap(54)
-							.addGroup(gl_centerPanel.createParallelGroup(Alignment.TRAILING, false)
-								.addComponent(btnRunAlgorith, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(btnEnterAnswers, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+							.addGroup(gl_centerPanel.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_centerPanel.createSequentialGroup()
+									.addComponent(txtInput, GroupLayout.PREFERRED_SIZE, 83, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(lblInput, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE))
+								.addGroup(gl_centerPanel.createSequentialGroup()
+									.addComponent(spnUnderscores, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.UNRELATED)
+									.addGroup(gl_centerPanel.createParallelGroup(Alignment.TRAILING, false)
+										.addComponent(btnEnterAnswers, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+										.addComponent(btnRunAlgorith, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+										.addComponent(btnAddUnderscores, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+							.addGap(23)))
 					.addGap(32))
 		);
 		gl_centerPanel.setVerticalGroup(
@@ -194,15 +212,19 @@ public class GUI {
 				.addGroup(gl_centerPanel.createSequentialGroup()
 					.addGap(19)
 					.addComponent(lblHelp)
-					.addGap(18)
+					.addGap(20)
+					.addGroup(gl_centerPanel.createParallelGroup(Alignment.TRAILING)
+						.addComponent(txtInput, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblInput, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(gl_centerPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(txtInput, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblInput))
-					.addGap(18)
+						.addComponent(spnUnderscores, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnAddUnderscores))
+					.addGap(30)
 					.addComponent(btnRunAlgorith)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(btnEnterAnswers)
-					.addContainerGap(139, Short.MAX_VALUE))
+					.addContainerGap(96, Short.MAX_VALUE))
 		);
 		centerPanel.setLayout(gl_centerPanel);
 	}

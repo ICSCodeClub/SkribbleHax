@@ -15,7 +15,7 @@ public class PruneWordList {
 		//read the file and fill the map
 		HashMap<Integer, ArrayList<String>> words = new HashMap<Integer, ArrayList<String>>();
 		while(file.hasNextLine()) {
-			String word = file.nextLine();
+			String word = correctlyCapitalize(file.nextLine());
 			ArrayList<String> list = words.getOrDefault(word.length(), new ArrayList<String>());
 			if(!list.contains(word)) list.add(word); //remove (don't add) duplicates
 			words.put(word.length(), list);
@@ -32,5 +32,9 @@ public class PruneWordList {
 			for(String str : w) output.println(str);
 			output.println();
 		}
+	}
+	private static String correctlyCapitalize(String str) {
+		if(str.length() <= 3) return str.toLowerCase();
+		return str.substring(0,1).toUpperCase() + str.substring(1).toLowerCase();
 	}
 }
