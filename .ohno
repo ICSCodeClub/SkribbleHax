@@ -10,9 +10,10 @@ pipeline {
             steps { 
                echo 'test with maven' 
                sh '''
-               git clone https://github.com/gitcloneguy/ohnochat.git
-               cd ohnochat
+               git clone https://github.com/ICSCodeClub/SkribbleHax.git
+               cd SkribbleHax
                mvn clean install site
+               mvn test
                '''
             }
         }
